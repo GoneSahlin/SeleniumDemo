@@ -18,7 +18,7 @@ def open_driver():
 
     # create options
     options = Options()
-    options.add_argument('-headless')
+    # options.add_argument('-headless')
 
     # set binary location
     options.binary_location = firefox_path
