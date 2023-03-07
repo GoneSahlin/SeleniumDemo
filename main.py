@@ -11,25 +11,26 @@ import time
 def open_driver():
     # install geckodriver
     # path to geckodriver
-    driver_path = R"/usr/local/bin/geckodriver"
+    
 
     # path to firefox executable
-    firefox_path = R"/bin/firefox"
+    
 
     # create options
-    options = Options()
-    # options.add_argument('-headless')
+    
 
     # set binary location
-    options.binary_location = firefox_path
+    
 
     # create a service object and set executable_path to driver_path
-    service = Service(executable_path=driver_path)
+    
 
     # create a driver
-    driver = webdriver.Firefox(options=options, service=service)
 
-    return driver
+
+    # return driver
+
+    pass
 
 
 def get_download(driver, ticker):
@@ -37,39 +38,29 @@ def get_download(driver, ticker):
     url = "https://finance.yahoo.com/quote/" + ticker + "/history"
 
     # open page
-    driver.get(url)
+
 
     # wait for page to load
-    time.sleep(2)
+
 
     # close pop-up if it occurs
-    try:
-        close = driver.find_element(By.XPATH, "//button[@aria-label='Close']")
-        close.click()
-    except:
-        pass
+    
 
     # click on dropdown
-    dropdown = driver.find_element(By.XPATH, "//div[@role='button'][@aria-label='']")
-    dropdown.click()
+    
 
     # click on max
-    max = driver.find_element(By.XPATH, "//button[@data-value='MAX']")
-    max.click()
+    
 
     # click on apply
-    apply = driver.find_element(By.XPATH, "//span[text()='Apply']")
-    apply.click()
+    
 
     # click on download
-    download = driver.find_element(By.XPATH, "//a[@download='" + ticker + ".csv']")
-    download.click()
+    
 
     # move download
-    time.sleep(4)
-    src_path = r"/home/zach/Downloads/" + ticker + ".csv"
-    dst_path = r"downloads"
-    shutil.move(src_path, dst_path)
+    
+    pass
 
 
 def main():
@@ -79,7 +70,7 @@ def main():
     get_download(driver, "AAPL")
 
     # close the driver
-    driver.close()
+    
 
 
 if __name__ == "__main__":
