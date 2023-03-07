@@ -32,8 +32,11 @@ def get_download(driver, ticker):
 
     time.sleep(2)
 
-    close = driver.find_element(By.XPATH, "//button[@aria-label='Close']")
-    close.click()
+    try:
+        close = driver.find_element(By.XPATH, "//button[@aria-label='Close']")
+        close.click()
+    except:
+        pass
 
     dropdown = driver.find_element(By.XPATH, "//div[@role='button'][@aria-label='']")
     dropdown.click()
@@ -47,9 +50,7 @@ def get_download(driver, ticker):
     download = driver.find_element(By.XPATH, "//a[@download='" + ticker + ".csv']")
     download.click()
 
-
-def move_download(ticker):
-
+    # move download
     time.sleep(4)
     src_path = r"/home/zach/Downloads/" + ticker + ".csv"
     dst_path = r"downloads"
@@ -59,9 +60,8 @@ def move_download(ticker):
 def main():
     driver = open_driver()
 
-    ticker = "F"
-    get_download(driver, ticker)
-    move_download(ticker)
+    get_download(driver, "F")
+    get_download(driver, "AAPL")
 
     driver.close()
 
